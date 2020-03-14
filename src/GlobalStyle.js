@@ -29,6 +29,15 @@ h3 {
   color: ${({ theme }) => theme.color.orange};
 }
 
+button {
+  font-weight: 300;
+  font-size: ${({ theme }) => theme.fontSize.md};
+  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
 label {
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSize.sm};
