@@ -14,28 +14,145 @@ import {
   StyledTextareaInput
 } from "./styles";
 
+const defaultState = {
+  form: {
+    nameTitle: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    firstName: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    lastName: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    accountName: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    companyName: {
+      value: "",
+      isRequired: false,
+      error: null
+    },
+    phone: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    fax: {
+      value: "",
+      isRequired: false,
+      error: null
+    },
+    title: {
+      value: "",
+      isRequired: false,
+      error: null
+    },
+    email: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    emailOptOut: {
+      value: false,
+      isRequired: false,
+      error: null
+    },
+    street: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    city: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    state: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    postcode: {
+      value: "",
+      isRequired: true,
+      error: null
+    },
+    description: {
+      value: "",
+      isRequired: true,
+      error: null
+    }
+  },
+  modalOpen: false
+};
+
 class CreateContactForm extends Component {
-  state = {
-    nameTitle: "",
-    firstName: "",
-    lastName: "",
-    accountName: "",
-    companyName: "",
-    phone: "",
-    fax: "",
-    title: "",
-    email: "",
-    emailOptOut: true,
-    street: "",
-    city: "",
-    state: "",
-    postcode: "",
-    description: ""
-  };
+  state = defaultState;
 
   handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const { name, value, checked } = event.target;
+    this.setState(prevState => ({
+      ...prevState,
+      form: {
+        ...prevState.form,
+        [name]: {
+          ...prevState.form[name],
+          value: name === "emailOptOut" ? checked : value,
+          error: null
+        }
+      }
+    }));
+  };
+
+  handleFormSubmit = () => {
+    const hasNoErrors = this.validateForm();
+
+    if (hasNoErrors) {
+      console.log(JSON.stringify(this.state, null, 2));
+    }
+  };
+
+  handleFormReset = () => {
+    this.setState({
+      ...defaultState
+    });
+  };
+
+  validateForm = () => {
+    let isValidForm = true;
+    const { form } = this.state;
+    const formFields = Object.keys(form);
+
+    // validate required form fields
+
+    formFields.forEach(async field => {
+      if (!form[field].value) {
+        if (form[field].isRequired) {
+          isValidForm = false;
+          await this.setState(prevState => ({
+            ...prevState,
+            form: {
+              ...prevState.form,
+              [field]: {
+                ...prevState.form[field],
+                error: "Required field"
+              }
+            }
+          }));
+        }
+      }
+    });
+
+    return isValidForm;
   };
 
   render() {
@@ -55,15 +172,19 @@ class CreateContactForm extends Component {
       state,
       postcode,
       description
-    } = this.state;
+    } = this.state.form;
 
     return (
       <>
         <StyledFormHeader>
           <h2>Create Contact</h2>
           <StyledButtonContainer>
-            <StyledButton type="secondary">Cancel</StyledButton>
-            <StyledButton type="primary">Save</StyledButton>
+            <StyledButton type="secondary" onClick={this.handleFormReset}>
+              Cancel
+            </StyledButton>
+            <StyledButton type="primary" onClick={this.handleFormSubmit}>
+              Save
+            </StyledButton>
           </StyledButtonContainer>
         </StyledFormHeader>
         <StyledFormContainer>
@@ -77,10 +198,10 @@ class CreateContactForm extends Component {
                     <StyledSelect
                       name="nameTitle"
                       id="nameTitle"
-                      value={nameTitle}
+                      defaultValue={nameTitle.value}
                       onChange={this.handleInputChange}
                     >
-                      <option value="" id="default" selected>
+                      <option value="" id="default">
                         - None
                       </option>
                       <option value="Mr">Mr</option>
@@ -94,7 +215,7 @@ class CreateContactForm extends Component {
                     <input
                       id="firstName"
                       name="firstName"
-                      value={firstName}
+                      value={firstName.value}
                       placeholder="John"
                       type="text"
                       onChange={this.handleInputChange}
@@ -106,7 +227,7 @@ class CreateContactForm extends Component {
                   <input
                     id="lastName"
                     name="lastName"
-                    value={lastName}
+                    value={lastName.value}
                     placeholder="Smith"
                     type="text"
                     onChange={this.handleInputChange}
@@ -117,9 +238,10 @@ class CreateContactForm extends Component {
                   <input
                     id="accountName"
                     name="accountName"
-                    value={accountName}
+                    value={accountName.value}
                     placeholder="John's Joinery"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -127,8 +249,9 @@ class CreateContactForm extends Component {
                   <input
                     id="companyName"
                     name="companyName"
-                    value={companyName}
+                    value={companyName.value}
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -136,9 +259,10 @@ class CreateContactForm extends Component {
                   <input
                     id="phone"
                     name="phone"
-                    value={phone}
+                    value={phone.value}
                     placeholder="02 123 456 78"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -146,9 +270,10 @@ class CreateContactForm extends Component {
                   <input
                     id="fax"
                     name="fax"
-                    value={fax}
+                    value={fax.value}
                     placeholder="John's Joinery"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -156,9 +281,10 @@ class CreateContactForm extends Component {
                   <input
                     id="title"
                     name="title"
-                    value={title}
+                    value={title.value}
                     placeholder="Owner"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -166,9 +292,10 @@ class CreateContactForm extends Component {
                   <input
                     id="email"
                     name="email"
-                    value={email}
+                    value={email.value}
                     placeholder="sample@email.com"
                     type="email"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledCheckboxInput>
@@ -176,8 +303,9 @@ class CreateContactForm extends Component {
                   <input
                     id="emailOptOut"
                     name="emailOptOut"
-                    value={emailOptOut}
+                    checked={emailOptOut.value}
                     type="checkbox"
+                    onChange={this.handleInputChange}
                   />
                 </StyledCheckboxInput>
               </StyledFormFields>
@@ -190,9 +318,10 @@ class CreateContactForm extends Component {
                   <input
                     id="street"
                     name="street"
-                    value={street}
-                    placeholder="1. Elizabeth Street"
+                    value={street.value}
+                    placeholder="1, Elizabeth Street"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -200,9 +329,10 @@ class CreateContactForm extends Component {
                   <input
                     id="city"
                     name="city"
-                    value={city}
+                    value={city.value}
                     placeholder="Sydney"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
                 <StyledTextInput>
@@ -211,6 +341,8 @@ class CreateContactForm extends Component {
                     list="state"
                     name="state"
                     placeholder="Search Territory or State"
+                    value={state.value}
+                    onChange={this.handleInputChange}
                   />
                   <datalist id="state">
                     <option value="New South Wales">New South Wales</option>
@@ -226,9 +358,10 @@ class CreateContactForm extends Component {
                   <input
                     id="postcode"
                     name="postcode"
-                    value={postcode}
+                    value={postcode.value}
                     placeholder="2000"
                     type="text"
+                    onChange={this.handleInputChange}
                   />
                 </StyledTextInput>
               </StyledFormFields>
@@ -238,9 +371,12 @@ class CreateContactForm extends Component {
               <StyledFormFields>
                 <StyledTextareaInput>
                   <label htmlFor="description">Description</label>
-                  <textarea name="description" id="description">
-                    {description}
-                  </textarea>
+                  <textarea
+                    name="description"
+                    id="description"
+                    onChange={this.handleInputChange}
+                    value={description.value}
+                  />
                 </StyledTextareaInput>
               </StyledFormFields>
             </StyledFormSection>

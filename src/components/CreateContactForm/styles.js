@@ -8,6 +8,7 @@ export const StyledInputContainer = styled.div`
 `;
 
 export const StyledFormHeader = styled.div`
+  display: sticky;
   padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.lg}`};
   background-color: ${({ theme }) => theme.color.blue};
   display: flex;
