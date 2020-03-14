@@ -30,6 +30,11 @@ h3 {
   margin-bottom: ${({ theme }) => theme.spacing.md};
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 button {
   font-weight: 300;
   font-size: ${({ theme }) => theme.fontSize.md};
@@ -37,6 +42,10 @@ button {
   border: none;
   border-radius: 1px;
   cursor: pointer;
+}
+
+li {
+  list-style: none;
 }
 
 label {
@@ -53,7 +62,7 @@ textarea {
   &:focus,
   &:-webkit-autofill:focus {
     outline: none;
-    border: ${({ theme }) => `1px solid ${theme.color.darkGrey1}`};
+    border: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
   }
 
   &::placeholder {

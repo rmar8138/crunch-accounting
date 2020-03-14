@@ -5,6 +5,7 @@ import theme from "./theme";
 
 import Header from "./components/Header";
 import CreateContactForm from "./components/CreateContactForm";
+import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <GlobalStyle />
         <Header />
         <CreateContactForm />
+        <Footer />
       </ThemeProvider>
     );
   }
