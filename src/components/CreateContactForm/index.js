@@ -8,7 +8,8 @@ import {
   StyledFormSection,
   StyledFormFields,
   StyledTextInput,
-  StyledCheckboxInput
+  StyledCheckboxInput,
+  StyledTextareaInput
 } from "./styles";
 
 class CreateContactForm extends Component {
@@ -143,7 +144,7 @@ class CreateContactForm extends Component {
                     id="email"
                     name="email"
                     value={email}
-                    placeholder="samle@email.com"
+                    placeholder="sample@email.com"
                     type="email"
                   />
                 </StyledTextInput>
@@ -156,6 +157,68 @@ class CreateContactForm extends Component {
                     type="checkbox"
                   />
                 </StyledCheckboxInput>
+              </StyledFormFields>
+            </StyledFormSection>
+            <StyledFormSection>
+              <h3>Address Information</h3>
+              <StyledFormFields>
+                <StyledTextInput>
+                  <label htmlFor="street">Street No. & Street</label>
+                  <input
+                    id="street"
+                    name="street"
+                    value={street}
+                    placeholder="1. Elizabeth Street"
+                    type="text"
+                  />
+                </StyledTextInput>
+                <StyledTextInput>
+                  <label htmlFor="city">City</label>
+                  <input
+                    id="city"
+                    name="city"
+                    value={city}
+                    placeholder="Sydney"
+                    type="text"
+                  />
+                </StyledTextInput>
+                <StyledTextInput>
+                  <label htmlFor="state">State</label>
+                  <input
+                    list="state"
+                    name="state"
+                    placeholder="Search Territory or State"
+                  />
+                  <datalist id="state">
+                    <option value="New South Wales">New South Wales</option>
+                    <option value="Victoria">Victoria</option>
+                    <option value="Queensland">Queensland</option>
+                    <option value="Western Australia">Western Australia</option>
+                    <option value="South Australia">South Australia</option>
+                    <option value="Tasmania">Tasmania</option>
+                  </datalist>
+                </StyledTextInput>
+                <StyledTextInput>
+                  <label htmlFor="postcode">Postcode</label>
+                  <input
+                    id="postcode"
+                    name="postcode"
+                    value={postcode}
+                    placeholder="2000"
+                    type="text"
+                  />
+                </StyledTextInput>
+              </StyledFormFields>
+            </StyledFormSection>
+            <StyledFormSection>
+              <h3>Description Information</h3>
+              <StyledFormFields>
+                <StyledTextareaInput>
+                  <label htmlFor="description">Description</label>
+                  <textarea name="description" id="description">
+                    {description}
+                  </textarea>
+                </StyledTextareaInput>
               </StyledFormFields>
             </StyledFormSection>
           </StyledForm>

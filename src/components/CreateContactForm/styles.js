@@ -32,6 +32,7 @@ export const StyledForm = styled.form`
 
 export const StyledFormSection = styled.div`
   min-width: 100%;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
 `;
 
 export const StyledFormFields = styled.div`
@@ -61,22 +62,22 @@ export const StyledCheckboxInput = styled.div`
   }
 `;
 
-// export const StyledTextareaInput = styled.div`
-//   width: 100%;
-//   padding: 1rem 0;
-//   display: flex;
-//   flex-direction: column;
+export const StyledTextareaInput = styled.div`
+  width: 100%;
+  padding: ${({ theme }) => `${theme.spacing.xs} 0`};
+  display: flex;
+  flex-direction: column;
 
-//   label {
-//     margin-bottom: 0.75rem;
-//   }
+  label {
+    margin-bottom: ${({ theme }) => theme.spacing.xs};
+  }
 
-//   textarea {
-//     width: 100%;
-//     height: 15rem;
+  textarea {
+    width: 100%;
+    height: 12.5rem;
 
-//     &:focus {
-//       outline: none;
-//     }
-//   }
-// `;
+    &:focus {
+      outline: none;
+    }
+  }
+`;
