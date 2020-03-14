@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-export const CreateContact = styled.div`
-  display: flex;
-  padding: 3rem;
-`;
-
-export const StyledContactFormPage = styled.div`
-  background-color: ${({ theme }) => theme.color.lightGrey};
-  justify-self: flex-start;
-`;
-
 export const StyledInputContainer = styled.div`
   width: 50rem;
   margin-bottom: 3rem;
@@ -27,48 +17,66 @@ export const StyledFormHeader = styled.div`
 
 export const StyledButtonContainer = styled.div`
   button:not(:last-child) {
-    margin-right: 0.75rem;
+    margin-right: ${({ theme }) => theme.spacing.xs};
   }
 `;
 
+export const StyledFormContainer = styled.div`
+  background-color: ${({ theme }) => theme.color.lightGrey1};
+  padding: ${({ theme }) => `${theme.spacing.xl} ${theme.spacing.lg}`};
+`;
+
+export const StyledForm = styled.form`
+  max-width: 40rem;
+`;
+
+export const StyledFormSection = styled.div`
+  min-width: 100%;
+`;
+
+export const StyledFormFields = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
 export const StyledTextInput = styled.div`
-  width: calc(50% - 1rem);
-  margin-right: 1rem;
-  padding: 1rem 0;
+  width: ${({ theme }) => `calc(50% - ${theme.spacing.xs})`};
+  padding: ${({ theme }) => `${theme.spacing.xs} 0`};
   display: flex;
   flex-direction: column;
 
   label {
-    margin-bottom: 0.75rem;
+    margin-bottom: ${({ theme }) => theme.spacing.xs};
   }
 `;
 
 export const StyledCheckboxInput = styled.div`
-  width: calc(50% - 1rem);
-  padding: 1rem 0;
+  width: ${({ theme }) => `calc(50% - ${theme.spacing.xs})`};
+  padding: ${({ theme }) => `${theme.spacing.xs} 0`};
 
   label {
-    margin-right: 1.5rem;
-    box-shadow: none;
+    margin-right: ${({ theme }) => theme.spacing.md};
   }
 `;
 
-export const StyledTextareaInput = styled.div`
-  width: 100%;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
+// export const StyledTextareaInput = styled.div`
+//   width: 100%;
+//   padding: 1rem 0;
+//   display: flex;
+//   flex-direction: column;
 
-  label {
-    margin-bottom: 0.75rem;
-  }
+//   label {
+//     margin-bottom: 0.75rem;
+//   }
 
-  textarea {
-    width: 100%;
-    height: 15rem;
+//   textarea {
+//     width: 100%;
+//     height: 15rem;
 
-    &:focus {
-      outline: none;
-    }
-  }
-`;
+//     &:focus {
+//       outline: none;
+//     }
+//   }
+// `;

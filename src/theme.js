@@ -20,10 +20,12 @@ const theme = {
     lg: `${textBaseSize * (textBaseScale * textBaseScale)}px`
   },
   spacing: {
+    xxs: `${0.25 * spaceUnit}px`,
     xs: `${0.5 * spaceUnit}px`,
     sm: `${0.75 * spaceUnit}px`,
     md: `${1.25 * spaceUnit}px`,
-    lg: `${2 * spaceUnit}px`
+    lg: `${2 * spaceUnit}px`,
+    xl: `${3.25 * spaceUnit}px`
   }
 };
 

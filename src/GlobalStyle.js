@@ -27,12 +27,13 @@ h2 {
 h3 {
   font-size: ${({ theme }) => theme.fontSize.md};
   color: ${({ theme }) => theme.color.orange};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
 }
 
 button {
   font-weight: 300;
   font-size: ${({ theme }) => theme.fontSize.md};
-  padding: ${({ theme }) => `${theme.spacing.xs} ${theme.spacing.md}`};
+  padding: ${({ theme }) => `${theme.spacing.xxs} ${theme.spacing.md}`};
   border: none;
   border-radius: 1px;
   cursor: pointer;
@@ -45,6 +46,7 @@ label {
 
 input,
 textarea {
+  font-size: ${({ theme }) => theme.fontSize.sm};
   border: 1px solid transparent;
   border-radius: 1px;
 
