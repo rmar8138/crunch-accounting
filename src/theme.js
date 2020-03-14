@@ -14,16 +14,16 @@ const theme = {
     orange: "#FE7C01"
   },
   fontSize: {
-    xs: textBaseSize / (textBaseScale * textBaseScale),
-    sm: textBaseSize / textBaseScale,
-    md: textBaseSize * textBaseScale,
-    lg: textBaseSize * (textBaseScale * textBaseScale)
+    xs: `${textBaseSize / (textBaseScale * textBaseScale)}px`,
+    sm: `${textBaseSize / textBaseScale}px`,
+    md: `${textBaseSize * textBaseScale}px`,
+    lg: `${textBaseSize * (textBaseScale * textBaseScale)}px`
   },
   spacing: {
-    xs: 0.5 * spaceUnit,
-    sm: 0.75 * spaceUnit,
-    md: 1.25 * spaceUnit,
-    lg: 2 * spaceUnit
+    xs: `${0.5 * spaceUnit}px`,
+    sm: `${0.75 * spaceUnit}px`,
+    md: `${1.25 * spaceUnit}px`,
+    lg: `${2 * spaceUnit}px`
   }
 };
 
