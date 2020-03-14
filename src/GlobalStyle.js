@@ -54,6 +54,7 @@ label {
 }
 
 input,
+select,
 textarea {
   font-size: ${({ theme }) => theme.fontSize.sm};
   border: 1px solid transparent;
@@ -71,6 +72,11 @@ textarea {
 }
 
 input {
+  padding: ${({ theme }) => theme.spacing.xs};
+}
+
+select {
+  appearance: none;
   padding: ${({ theme }) => theme.spacing.xs};
 }
 

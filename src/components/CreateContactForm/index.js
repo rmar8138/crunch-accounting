@@ -7,6 +7,8 @@ import {
   StyledForm,
   StyledFormSection,
   StyledFormFields,
+  StyledTextDropdownInput,
+  StyledSelect,
   StyledTextInput,
   StyledCheckboxInput,
   StyledTextareaInput
@@ -14,6 +16,7 @@ import {
 
 class CreateContactForm extends Component {
   state = {
+    nameTitle: "",
     firstName: "",
     lastName: "",
     accountName: "",
@@ -37,6 +40,7 @@ class CreateContactForm extends Component {
 
   render() {
     const {
+      nameTitle,
       firstName,
       lastName,
       accountName,
@@ -69,14 +73,33 @@ class CreateContactForm extends Component {
               <StyledFormFields>
                 <StyledTextInput>
                   <label htmlFor="firstName">First Name</label>
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    value={firstName}
-                    placeholder="John"
-                    type="text"
-                    onChange={this.handleInputChange}
-                  />
+                  <StyledTextDropdownInput>
+                    <StyledSelect
+                      name="nameTitle"
+                      id="nameTitle"
+                      value={nameTitle}
+                      onChange={this.handleInputChange}
+                    >
+                      <option value="" id="default" selected>
+                        - None
+                      </option>
+                      <option value="Mr">Mr</option>
+                      <option value="Mrs">Mrs</option>
+                      <option value="Miss">Miss</option>
+                      <option value="Ms">Ms</option>
+                      <option value="Dr">Dr</option>
+                      <option value="Prof">Prof</option>
+                      <option value="Sir">Sir</option>
+                    </StyledSelect>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      value={firstName}
+                      placeholder="John"
+                      type="text"
+                      onChange={this.handleInputChange}
+                    />
+                  </StyledTextDropdownInput>
                 </StyledTextInput>
                 <StyledTextInput>
                   <label htmlFor="lastName">Last Name</label>

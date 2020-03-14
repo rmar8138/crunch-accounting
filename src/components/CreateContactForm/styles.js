@@ -42,6 +42,51 @@ export const StyledFormFields = styled.div`
   flex-wrap: wrap;
 `;
 
+export const StyledTextDropdownInput = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  input {
+    flex: 1;
+    border-left: ${({ theme }) => `1px solid ${theme.color.lightGrey2}`};
+
+    &:focus,
+    &:-webkit-autofill:focus {
+      border-right: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+    }
+  }
+
+  input {
+    &:focus,
+    &:-webkit-autofill:focus {
+      outline: none;
+      border-top: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+      border-bottom: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+    }
+  }
+`;
+
+export const StyledSelect = styled.select`
+  flex: 0 0 25%;
+  background-color: ${({ theme }) => theme.color.white};
+  align-self: stretch;
+  color: ${({ value, theme }) =>
+    value === "" ? theme.color.lightGrey2 : theme.color.black};
+
+  &:focus + input {
+    border-left: 1px solid transparent;
+  }
+
+  &:focus,
+  &:-webkit-autofill:focus {
+    outline: none;
+    border-left: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+    border-top: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+    border-bottom: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+  }
+`;
+
 export const StyledTextInput = styled.div`
   width: ${({ theme }) => `calc(50% - ${theme.spacing.xs})`};
   padding: ${({ theme }) => `${theme.spacing.xs} 0`};
@@ -56,9 +101,14 @@ export const StyledTextInput = styled.div`
 export const StyledCheckboxInput = styled.div`
   width: ${({ theme }) => `calc(50% - ${theme.spacing.xs})`};
   padding: ${({ theme }) => `${theme.spacing.xs} 0`};
+  display: flex;
 
   label {
     margin-right: ${({ theme }) => theme.spacing.md};
+  }
+
+  input {
+    margin-top: 2px;
   }
 `;
 
