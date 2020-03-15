@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { isEmail, isPostalCode, isInt } from "validator";
 import Modal from "./../Modal";
 import StyledButton from "../Button";
 import { StyledFormHeader, StyledButtonContainer } from "./styles";
 import defaultForm from "./form/defaultForm";
 import formBuilder from "./form/formBuilder";
-import { anyLocale } from "./../../config/constants";
+import { selectErrorMessage } from "./helpers";
 import { errorMessages } from "./../../config/messages";
 
 class CreateContactForm extends Component {
@@ -81,28 +80,9 @@ class CreateContactForm extends Component {
   };
 
   handleInputBlur = (formSectionIndex, event) => {
-    // onblur, check if phone/email/postcode input
-    let error = "";
     const { name, value } = event.target;
+    const error = selectErrorMessage(name, value);
 
-    // if value, run through validator
-    if (value) {
-      switch (name) {
-        case "phone":
-          if (!isInt(value)) error = errorMessages.invalidPhone;
-          break;
-        case "email":
-          if (!isEmail(value)) error = errorMessages.invalidEmail;
-          break;
-        case "postcode":
-          if (!isPostalCode(value, anyLocale))
-            error = errorMessages.invalidPostcode;
-          break;
-        default:
-          break;
-      }
-    }
-    // if not valid, set error message
     if (error) {
       this.setState(prevState => ({
         ...prevState,
@@ -151,7 +131,7 @@ class CreateContactForm extends Component {
                     if (prevFieldIndex === currentFieldIndex && !field.error) {
                       return {
                         ...field,
-                        error: "Required field"
+                        error: errorMessages.requiredField
                       };
                     }
 
