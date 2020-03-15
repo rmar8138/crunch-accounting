@@ -13,6 +13,10 @@ export const StyledModal = styled.div`
   z-index: 1;
   overflow: scroll;
 
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    min-width: 90vw;
+  }
+
   button {
     position: fixed;
     top: ${({ theme }) => theme.spacing.md};
@@ -41,6 +45,14 @@ export const StyledModal = styled.div`
     width: 50%;
     display: flex;
     margin: ${({ theme }) => `${theme.spacing.sm} 0`};
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+      margin: ${({ theme }) => `${theme.spacing.xs} 0`};
+    }
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
+      width: 100%;
+    }
 
     p {
       width: 50%;

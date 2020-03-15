@@ -32,7 +32,8 @@ const theme = {
   },
   breakpoint: {
     sm: "535px",
-    md: "820px"
+    md: "820px",
+    lg: "1024px"
   }
 };
 

@@ -6,7 +6,8 @@ export const selectErrorMessage = (name, value) => {
   if (value) {
     switch (name) {
       case "phone":
-        if (!isInt(value)) return errorMessages.invalidPhone;
+        if (!isInt(value.split(" ").join("")))
+          return errorMessages.invalidPhone;
         break;
       case "email":
         if (!isEmail(value)) return errorMessages.invalidEmail;
