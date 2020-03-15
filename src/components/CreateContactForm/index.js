@@ -29,14 +29,16 @@ class CreateContactForm extends Component {
                 if (name === "nameTitle") {
                   return {
                     ...field,
-                    selectValue: value
+                    selectValue: value,
+                    error: ""
                   };
                 }
 
                 if (name === "firstName") {
                   return {
                     ...field,
-                    textValue: value
+                    textValue: value,
+                    error: ""
                   };
                 }
               }
@@ -44,7 +46,8 @@ class CreateContactForm extends Component {
               if (field.name === name) {
                 return {
                   ...field, // return other fields
-                  value: name === "emailOptOut" ? checked : value
+                  value: name === "emailOptOut" ? checked : value,
+                  error: ""
                 };
               }
 
@@ -59,12 +62,12 @@ class CreateContactForm extends Component {
   };
 
   handleFormSubmit = () => {
-    // const hasNoErrors = this.validateForm();
+    const hasNoErrors = this.validateForm();
 
-    // if (hasNoErrors) {
-    //   console.log(JSON.stringify(this.state, null, 2));
-    // }
-    this.setState({ modalOpen: true });
+    if (hasNoErrors) {
+      console.log(JSON.stringify(this.state, null, 2));
+      this.setState({ modalOpen: true });
+    }
   };
 
   handleFormReset = () => {
@@ -77,26 +80,39 @@ class CreateContactForm extends Component {
   validateForm = () => {
     let isValidForm = true;
     const { form } = this.state;
-    const formFields = Object.keys(form);
 
-    // validate required form fields
+    form.forEach((formSection, currentFormSection) => {
+      formSection.fields.forEach(async (field, currentFieldIndex) => {
+        if (field.selectValue || field.textValue || field.value) {
+          return;
+        }
 
-    formFields.forEach(async field => {
-      if (!form[field].value) {
-        if (form[field].isRequired) {
+        if (field.isRequired) {
           isValidForm = false;
           await this.setState(prevState => ({
             ...prevState,
-            form: {
-              ...prevState.form,
-              [field]: {
-                ...prevState.form[field],
-                error: "Required field"
+            form: prevState.form.map((formSection, prevFormSection) => {
+              if (prevFormSection === currentFormSection) {
+                return {
+                  ...formSection,
+                  fields: formSection.fields.map((field, prevFieldIndex) => {
+                    if (prevFieldIndex === currentFieldIndex) {
+                      return {
+                        ...field,
+                        error: "Required field"
+                      };
+                    }
+
+                    return field;
+                  })
+                };
               }
-            }
+
+              return formSection;
+            })
           }));
         }
-      }
+      });
     });
 
     return isValidForm;
