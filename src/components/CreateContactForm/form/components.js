@@ -16,7 +16,7 @@ export const TextInput = ({
   error,
   formSectionIndex
 }) => (
-  <StyledTextInput>
+  <StyledTextInput error={error}>
     <label htmlFor={name}>{label}</label>
     <input
       id={name}
@@ -39,7 +39,7 @@ export const EmailInput = ({
   error,
   formSectionIndex
 }) => (
-  <StyledTextInput>
+  <StyledTextInput error={error}>
     <label htmlFor={name}>{label}</label>
     <input
       id={name}
@@ -82,7 +82,7 @@ export const TextareaInput = ({
   error,
   formSectionIndex
 }) => (
-  <StyledTextareaInput>
+  <StyledTextareaInput error={error}>
     <label htmlFor={name}>{label}</label>
     <textarea
       name={name}
@@ -104,7 +104,7 @@ export const DatalistInput = ({
   error,
   formSectionIndex
 }) => (
-  <StyledTextInput>
+  <StyledTextInput error={error}>
     <label htmlFor={name}>{label}</label>
     <input
       list={name}

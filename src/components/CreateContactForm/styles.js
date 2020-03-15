@@ -99,6 +99,16 @@ export const StyledTextInput = styled.div`
   label {
     margin-bottom: ${({ theme }) => theme.spacing.xs};
   }
+
+  input {
+    border: ${({ error, theme }) =>
+      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+  }
+
+  span {
+    color: ${({ theme }) => theme.color.red};
+    margin-top: ${({ theme }) => theme.spacing.xs};
+  }
 `;
 
 export const StyledCheckboxInput = styled.div`
@@ -128,9 +138,16 @@ export const StyledTextareaInput = styled.div`
   textarea {
     width: 100%;
     height: 12.5rem;
+    border: ${({ error, theme }) =>
+      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
 
     &:focus {
       outline: none;
     }
+  }
+
+  span {
+    color: ${({ theme }) => theme.color.red};
+    margin-top: ${({ theme }) => theme.spacing.xs};
   }
 `;

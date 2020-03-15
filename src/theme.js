@@ -12,7 +12,8 @@ const theme = {
     darkGrey2: "#989AA5",
     blue: "#06198B",
     orange: "#FE7C01",
-    green: "#68E3A6"
+    green: "#68E3A6",
+    red: "#FF637C"
   },
   fontSize: {
     xs: `${textBaseSize / (textBaseScale * textBaseScale)}px`,

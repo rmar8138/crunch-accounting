@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { StyledModal } from "./styles";
 import closeIcon from "./../../assets/images/close.svg";
 import successIcon from "./../../assets/images/success.svg";
@@ -9,7 +9,7 @@ class Modal extends Component {
       case "selectText":
         // this is for the title + name input dropdown
         return (
-          <li>
+          <li key={field.textLabel}>
             <p className="field">{field.textLabel}</p>
             <p className="value">{`${field.selectValue} ${field.textValue}`}</p>
           </li>
@@ -17,21 +17,21 @@ class Modal extends Component {
       case "description":
         // so that description fills full width of modal container
         return (
-          <li className="description">
+          <li key={field.label} className="description">
             <p className="field">{field.label}</p>
             <p className="value">{field.value}</p>
           </li>
         );
       case "checkbox":
         return (
-          <li className="description">
+          <li key={field.label}>
             <p className="field">{field.label}</p>
             <p className="value">{field.value ? "Yes" : "No"}</p>
           </li>
         );
       default:
         return (
-          <li>
+          <li key={field.label}>
             <p className="field">{field.label}</p>
             <p className="value">{field.value}</p>
           </li>
@@ -55,14 +55,14 @@ class Modal extends Component {
         </div>
         <div>
           {formData.map(formSection => (
-            <>
+            <Fragment key={formSection.heading}>
               <h3>{formSection.heading}</h3>
               <ul>
                 {formSection.fields.map(field =>
                   this.handleFormDataRender(field)
                 )}
               </ul>
-            </>
+            </Fragment>
           ))}
         </div>
       </StyledModal>

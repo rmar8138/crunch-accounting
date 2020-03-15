@@ -65,7 +65,6 @@ class CreateContactForm extends Component {
     const hasNoErrors = this.validateForm();
 
     if (hasNoErrors) {
-      console.log(JSON.stringify(this.state, null, 2));
       this.setState({ modalOpen: true });
     }
   };
@@ -83,10 +82,6 @@ class CreateContactForm extends Component {
 
     form.forEach((formSection, currentFormSection) => {
       formSection.fields.forEach(async (field, currentFieldIndex) => {
-        if (field.selectValue || field.textValue || field.value) {
-          return;
-        }
-
         if (field.isRequired) {
           isValidForm = false;
           await this.setState(prevState => ({
