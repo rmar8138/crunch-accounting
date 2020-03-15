@@ -15,6 +15,7 @@ class CreateContactForm extends Component {
 
   handleCloseModal = () => {
     this.setState({ modalOpen: false });
+    this.handleFormReset();
   };
 
   handleInputChange = (formSectionIndex, event) => {
@@ -32,7 +33,7 @@ class CreateContactForm extends Component {
                   return {
                     ...field,
                     selectValue: value,
-                    error: ""
+                    error: null
                   };
                 }
 
@@ -40,7 +41,7 @@ class CreateContactForm extends Component {
                   return {
                     ...field,
                     textValue: value,
-                    error: ""
+                    error: null
                   };
                 }
               }
@@ -49,7 +50,7 @@ class CreateContactForm extends Component {
                 return {
                   ...field, // return other fields
                   value: name === "emailOptOut" ? checked : value,
-                  error: ""
+                  error: null
                 };
               }
 
@@ -133,6 +134,10 @@ class CreateContactForm extends Component {
 
     form.forEach((formSection, currentFormSection) => {
       formSection.fields.forEach(async (field, currentFieldIndex) => {
+        if (field.selectValue || field.textValue || field.value) {
+          return;
+        }
+
         if (field.isRequired) {
           isValidForm = false;
           await this.setState(prevState => ({
