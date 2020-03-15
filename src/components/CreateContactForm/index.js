@@ -6,6 +6,7 @@ import { StyledFormHeader, StyledButtonContainer } from "./styles";
 import defaultForm from "./form/defaultForm";
 import formBuilder from "./form/formBuilder";
 import { anyLocale } from "./../../config/constants";
+import { errorMessages } from "./../../config/messages";
 
 class CreateContactForm extends Component {
   state = {
@@ -88,14 +89,14 @@ class CreateContactForm extends Component {
     if (value) {
       switch (name) {
         case "phone":
-          if (!isInt(value)) error = "Must be a valid phone number";
+          if (!isInt(value)) error = errorMessages.invalidPhone;
           break;
         case "email":
-          if (!isEmail(value)) error = "Must be a valid email address";
+          if (!isEmail(value)) error = errorMessages.invalidEmail;
           break;
         case "postcode":
           if (!isPostalCode(value, anyLocale))
-            error = "Must be a valid postcode";
+            error = errorMessages.invalidPostcode;
           break;
         default:
           break;
