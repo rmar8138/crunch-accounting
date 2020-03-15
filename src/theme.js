@@ -29,6 +29,10 @@ const theme = {
     lg: `${2 * spaceUnit}px`,
     xl: `${3.25 * spaceUnit}px`,
     xxl: `${8.75 * spaceUnit}px`
+  },
+  breakpoint: {
+    sm: "535px",
+    md: "820px"
   }
 };
 

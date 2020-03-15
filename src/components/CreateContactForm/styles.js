@@ -16,6 +16,14 @@ export const StyledFormHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.sm}`};
+
+    h2 {
+      font-size: ${({ theme }) => theme.fontSize.md};
+    }
+  }
 `;
 
 export const StyledButtonContainer = styled.div`
@@ -27,6 +35,10 @@ export const StyledButtonContainer = styled.div`
 export const StyledFormContainer = styled.div`
   background-color: ${({ theme }) => theme.color.lightGrey1};
   padding: ${({ theme }) => `${theme.spacing.xl} ${theme.spacing.lg}`};
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    padding: ${({ theme }) => `${theme.spacing.lg} ${theme.spacing.sm}`};
+  }
 `;
 
 export const StyledForm = styled.form`
@@ -108,6 +120,10 @@ export const StyledTextInput = styled.div`
   span {
     color: ${({ theme }) => theme.color.red};
     margin-top: ${({ theme }) => theme.spacing.xs};
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    width: 100%;
   }
 `;
 

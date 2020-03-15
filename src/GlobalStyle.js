@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
 html {
   box-sizing: border-box;
+  background-color: ${({ theme }) => theme.color.lightGrey1};
 }
 
 body {
@@ -46,6 +47,10 @@ button {
 
   &:focus {
     outline: none;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    padding: ${({ theme }) => `${theme.spacing.xxs} ${theme.spacing.sm}`};
   }
 }
 

@@ -8,5 +8,9 @@ export const StyledHeader = styled.header`
 
   img {
     width: 12.5rem;
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+      width: 10.5rem;
+    }
   }
 `;

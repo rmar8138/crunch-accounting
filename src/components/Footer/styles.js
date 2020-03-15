@@ -24,4 +24,14 @@ export const StyledFooter = styled.footer`
       }
     }
   }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-direction: column;
+    align-items: center;
+    padding: ${({ theme }) => `${theme.spacing.md} ${theme.spacing.lg}`};
+
+    ul {
+      margin-top: ${({ theme }) => theme.spacing.sm};
+    }
+  }
 `;
