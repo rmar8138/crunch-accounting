@@ -5,7 +5,7 @@ import {
   CheckboxInput,
   TextareaInput,
   DatalistInput,
-  SelectInput
+  SelectTextInput
 } from "./components";
 import {
   StyledFormContainer,
@@ -14,17 +14,11 @@ import {
   StyledFormFields
 } from "./../styles";
 
-/*
-<div>
-  {formBuilder(this.state.form, this.handleInputChange)}
-</div>
-*/
-
 const formBuilder = (form, handleInputChange) => (
   <StyledFormContainer>
     <StyledForm>
-      {form.map(((formSection, index)) => (
-        <StyledFormSection>
+      {form.map((formSection, index) => (
+        <StyledFormSection key={formSection.heading}>
           <h3>{formSection.heading}</h3>
           <StyledFormFields>
             {formSection.fields.map(field =>
@@ -42,64 +36,80 @@ const inputSelector = (field, handleInputChange, index) => {
     case "text":
       return (
         <TextInput
+          key={field.name}
           label={field.label}
           name={field.name}
           value={field.value}
           placeholder={field.placeholder}
-          handleInputChange={() => handleInputChange(index)}
+          handleInputChange={handleInputChange}
+          formSectionIndex={index}
           error={field.error}
         />
       );
     case "email":
       return (
         <EmailInput
+          key={field.name}
           label={field.label}
           name={field.name}
           value={field.value}
           placeholder={field.placeholder}
-          handleInputChange={() => handleInputChange(index)}
+          handleInputChange={handleInputChange}
+          formSectionIndex={index}
           error={field.error}
         />
       );
     case "checkbox":
       return (
         <CheckboxInput
+          key={field.name}
           label={field.label}
           name={field.name}
           value={field.value}
-          handleInputChange={() => handleInputChange(index)}
+          handleInputChange={handleInputChange}
+          formSectionIndex={index}
           error={field.error}
         />
       );
     case "textarea":
       return (
         <TextareaInput
+          key={field.name}
           label={field.label}
           name={field.name}
           value={field.value}
-          handleInputChange={() => handleInputChange(index)}
+          handleInputChange={handleInputChange}
+          formSectionIndex={index}
           error={field.error}
         />
       );
     case "datalist":
       return (
         <DatalistInput
+          key={field.name}
           label={field.label}
           name={field.name}
           placeholder={field.placeholder}
           value={field.value}
           options={field.options}
-          handleInputChange={() => handleInputChange(index)}
+          handleInputChange={handleInputChange}
+          formSectionIndex={index}
           error={field.error}
         />
       );
-    case "select":
+    case "selectText":
       return (
-        <SelectInput
-          name={field.name}
-          value={field.value}
+        <SelectTextInput
+          key={field.selectName}
+          selectName={field.selectName}
+          selectValue={field.selectValue}
           options={field.options}
-          handleInputChange={() => handleInputChange(index)}
+          textLabel={field.textLabel}
+          textName={field.textName}
+          textValue={field.textValue}
+          textPlaceholder={field.textPlaceholder}
+          handleInputChange={handleInputChange}
+          formSectionIndex={index}
           error={field.error}
         />
       );

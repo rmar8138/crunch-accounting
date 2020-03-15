@@ -2,6 +2,7 @@ import React from "react";
 import {
   StyledSelect,
   StyledTextInput,
+  StyledTextDropdownInput,
   StyledCheckboxInput,
   StyledTextareaInput
 } from "./../styles";
@@ -12,7 +13,8 @@ export const TextInput = ({
   value,
   placeholder,
   handleInputChange,
-  error
+  error,
+  formSectionIndex
 }) => (
   <StyledTextInput>
     <label htmlFor={name}>{label}</label>
@@ -22,7 +24,7 @@ export const TextInput = ({
       value={value}
       placeholder={placeholder}
       type="text"
-      onChange={handleInputChange}
+      onChange={event => handleInputChange(formSectionIndex, event)}
     />
     {error && <span>{error}</span>}
   </StyledTextInput>
@@ -34,7 +36,8 @@ export const EmailInput = ({
   value,
   placeholder,
   handleInputChange,
-  error
+  error,
+  formSectionIndex
 }) => (
   <StyledTextInput>
     <label htmlFor={name}>{label}</label>
@@ -44,7 +47,7 @@ export const EmailInput = ({
       value={value}
       placeholder={placeholder}
       type="email"
-      onChange={handleInputChange}
+      onChange={event => handleInputChange(formSectionIndex, event)}
     />
     {error && <span>{error}</span>}
   </StyledTextInput>
@@ -55,7 +58,8 @@ export const CheckboxInput = ({
   name,
   value,
   handleInputChange,
-  error
+  error,
+  formSectionIndex
 }) => (
   <StyledCheckboxInput>
     <label htmlFor={name}>{label}</label>
@@ -64,7 +68,7 @@ export const CheckboxInput = ({
       name={name}
       checked={value}
       type="checkbox"
-      onChange={handleInputChange}
+      onChange={event => handleInputChange(formSectionIndex, event)}
     />
     {error && <span>{error}</span>}
   </StyledCheckboxInput>
@@ -75,7 +79,8 @@ export const TextareaInput = ({
   name,
   value,
   handleInputChange,
-  error
+  error,
+  formSectionIndex
 }) => (
   <StyledTextareaInput>
     <label htmlFor={name}>{label}</label>
@@ -83,7 +88,7 @@ export const TextareaInput = ({
       name={name}
       id={name}
       value={value}
-      onChange={handleInputChange}
+      onChange={event => handleInputChange(formSectionIndex, event)}
     />
     {error && <span>{error}</span>}
   </StyledTextareaInput>
@@ -96,7 +101,8 @@ export const DatalistInput = ({
   value,
   options,
   handleInputChange,
-  error
+  error,
+  formSectionIndex
 }) => (
   <StyledTextInput>
     <label htmlFor={name}>{label}</label>
@@ -105,7 +111,7 @@ export const DatalistInput = ({
       name={name}
       placeholder={placeholder}
       value={value}
-      onChange={handleInputChange}
+      onChange={event => handleInputChange(formSectionIndex, event)}
     />
     <datalist id={name}>
       {options.map(option => (
@@ -118,30 +124,52 @@ export const DatalistInput = ({
   </StyledTextInput>
 );
 
-export const SelectInput = ({
-  name,
-  value,
+export const SelectTextInput = ({
+  selectName,
+  selectValue,
   options,
+  textLabel,
+  textName,
+  textValue,
+  textPlaceholder,
   handleInputChange,
-  error
+  error,
+  formSectionIndex
 }) => (
-  <StyledSelect
-    name={name}
-    id={name}
-    defaultValue={value}
-    onChange={handleInputChange}
-  >
-    {options.map((option, index) => {
-      if (index === 1) {
-        return (
-          <option value="" id="default">
-            {option}
-          </option>
-        );
-      }
+  <StyledTextInput>
+    <label htmlFor={textName}>{textLabel}</label>
+    <StyledTextDropdownInput>
+      <StyledSelect
+        name={selectName}
+        id={selectName}
+        defaultValue={selectValue}
+        onChange={event => handleInputChange(formSectionIndex, event)}
+      >
+        {options.map((option, index) => {
+          if (index === 0) {
+            return (
+              <option key={option} value="" id="default">
+                {option}
+              </option>
+            );
+          }
 
-      return <option value={option}>{option}</option>;
-    })}
+          return (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          );
+        })}
+      </StyledSelect>
+      <input
+        id={textName}
+        name={textName}
+        value={textValue}
+        placeholder={textPlaceholder}
+        type="text"
+        onChange={event => handleInputChange(formSectionIndex, event)}
+      />
+    </StyledTextDropdownInput>
     {error && <span>{error}</span>}
-  </StyledSelect>
+  </StyledTextInput>
 );

@@ -3,19 +3,13 @@ const defaultForm = [
     heading: "Contact Information",
     fields: [
       {
-        type: "select",
-        label: "Name Title",
-        name: "nameTitle",
-        value: "",
-        options: ["Mr", "Mrs", "Miss", "Ms", "Sir", "Dr", "Prof"],
-        isRequired: true,
-        error: null
-      },
-      {
-        type: "text",
-        label: "First Name",
-        name: "firstName",
-        value: "",
+        type: "selectText",
+        selectName: "nameTitle",
+        selectValue: "",
+        options: ["- None", "Mr", "Mrs", "Miss", "Ms", "Sir", "Dr", "Prof"],
+        textLabel: "First Name",
+        textName: "firstName",
+        textValue: "",
         isRequired: true,
         error: null
       },
