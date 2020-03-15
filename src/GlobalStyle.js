@@ -15,7 +15,8 @@ body {
   color: ${({ theme }) => theme.color.black};
   font-family: "Lato", sans-serif;
   font-size: ${({ theme }) => theme.fontSize.sm};
-  font-weight: 300;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
 h2 {

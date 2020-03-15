@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Modal from "./../Modal";
 import StyledButton from "../Button";
 import {
   StyledFormHeader,
@@ -98,6 +99,10 @@ const defaultState = {
 class CreateContactForm extends Component {
   state = defaultState;
 
+  handleCloseModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
   handleInputChange = event => {
     const { name, value, checked } = event.target;
     this.setState(prevState => ({
@@ -114,11 +119,12 @@ class CreateContactForm extends Component {
   };
 
   handleFormSubmit = () => {
-    const hasNoErrors = this.validateForm();
+    // const hasNoErrors = this.validateForm();
 
-    if (hasNoErrors) {
-      console.log(JSON.stringify(this.state, null, 2));
-    }
+    // if (hasNoErrors) {
+    //   console.log(JSON.stringify(this.state, null, 2));
+    // }
+    this.setState({ modalOpen: true });
   };
 
   handleFormReset = () => {
@@ -156,6 +162,7 @@ class CreateContactForm extends Component {
   };
 
   render() {
+    const { modalOpen } = this.state;
     const {
       nameTitle,
       firstName,
@@ -176,6 +183,10 @@ class CreateContactForm extends Component {
 
     return (
       <>
+        <Modal
+          data={this.state.form}
+          handleCloseModal={this.handleCloseModal}
+        />
         <StyledFormHeader>
           <h2>Create Contact</h2>
           <StyledButtonContainer>
