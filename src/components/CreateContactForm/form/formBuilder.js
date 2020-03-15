@@ -107,7 +107,7 @@ const inputSelector = (field, handleInputChange, index) => {
           textLabel={field.textLabel}
           textName={field.textName}
           textValue={field.textValue}
-          textPlaceholder={field.textPlaceholder}
+          placeholder={field.placeholder}
           handleInputChange={handleInputChange}
           formSectionIndex={index}
           error={field.error}

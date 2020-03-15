@@ -10,6 +10,7 @@ const defaultForm = [
         textLabel: "First Name",
         textName: "firstName",
         textValue: "",
+        placeholder: "John",
         isRequired: true,
         error: null
       },
@@ -18,6 +19,7 @@ const defaultForm = [
         label: "Last Name",
         name: "lastName",
         value: "",
+        placeholder: "Smith",
         isRequired: true,
         error: null
       },
@@ -26,6 +28,7 @@ const defaultForm = [
         label: "Account Name",
         name: "accountName",
         value: "",
+        placeholder: "John's Joinery",
         isRequired: true,
         error: null
       },
@@ -42,6 +45,7 @@ const defaultForm = [
         label: "Phone",
         name: "phone",
         value: "",
+        placeholder: "02 123 456 78",
         isRequired: true,
         error: null
       },
@@ -50,6 +54,7 @@ const defaultForm = [
         label: "Fax (optional)",
         name: "fax",
         value: "",
+        placeholder: "John's Joinery",
         isRequired: false,
         error: null
       },
@@ -58,6 +63,7 @@ const defaultForm = [
         label: "Title (optional)",
         name: "title",
         value: "",
+        placeholder: "Owner",
         isRequired: false,
         error: null
       },
@@ -66,6 +72,7 @@ const defaultForm = [
         label: "Email",
         name: "email",
         value: "",
+        placeholder: "sample@email.com",
         isRequired: true,
         error: null
       },
@@ -87,6 +94,7 @@ const defaultForm = [
         label: "Street",
         name: "street",
         value: "",
+        placeholder: "1, Elizabeth Street",
         isRequired: true,
         error: null
       },
@@ -95,6 +103,7 @@ const defaultForm = [
         label: "City",
         name: "city",
         value: "",
+        placeholder: "Sydney",
         isRequired: true,
         error: null
       },
@@ -111,6 +120,7 @@ const defaultForm = [
           "South Australia",
           "Tasmania"
         ],
+        placeholder: "New South Wales",
         isRequired: true,
         error: null
       },
@@ -119,6 +129,7 @@ const defaultForm = [
         label: "Postcode",
         name: "postcode",
         value: "",
+        placeholder: "2000",
         isRequired: true,
         error: null
       }

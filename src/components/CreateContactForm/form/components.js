@@ -131,7 +131,7 @@ export const SelectTextInput = ({
   textLabel,
   textName,
   textValue,
-  textPlaceholder,
+  placeholder,
   handleInputChange,
   error,
   formSectionIndex
@@ -165,7 +165,7 @@ export const SelectTextInput = ({
         id={textName}
         name={textName}
         value={textValue}
-        placeholder={textPlaceholder}
+        placeholder={placeholder}
         type="text"
         onChange={event => handleInputChange(formSectionIndex, event)}
       />
