@@ -17,6 +17,10 @@ export const StyledModal = styled.div`
     min-width: 90vw;
   }
 
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    padding: ${({ theme }) => theme.spacing.lg};
+  }
+
   button {
     position: fixed;
     top: ${({ theme }) => theme.spacing.md};
@@ -39,6 +43,12 @@ export const StyledModal = styled.div`
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     display: flex;
     flex-wrap: wrap;
+  }
+
+  h3 {
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
+      text-align: center;
+    }
   }
 
   li {

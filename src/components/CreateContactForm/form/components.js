@@ -11,6 +11,7 @@ export const TextInput = ({
   label,
   name,
   value,
+  type,
   placeholder,
   handleInputChange,
   handleInputBlur,
@@ -24,32 +25,7 @@ export const TextInput = ({
       name={name}
       value={value}
       placeholder={placeholder}
-      type="text"
-      onChange={event => handleInputChange(formSectionIndex, event)}
-      onBlur={event => handleInputBlur(formSectionIndex, event)}
-    />
-    {error && <span>{error}</span>}
-  </StyledTextInput>
-);
-
-export const EmailInput = ({
-  label,
-  name,
-  value,
-  placeholder,
-  handleInputChange,
-  handleInputBlur,
-  error,
-  formSectionIndex
-}) => (
-  <StyledTextInput error={error}>
-    <label htmlFor={name}>{label}</label>
-    <input
-      id={name}
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      type="email"
+      type={type}
       onChange={event => handleInputChange(formSectionIndex, event)}
       onBlur={event => handleInputBlur(formSectionIndex, event)}
     />

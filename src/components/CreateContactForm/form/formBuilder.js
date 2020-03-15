@@ -1,7 +1,6 @@
 import React from "react";
 import {
   TextInput,
-  EmailInput,
   CheckboxInput,
   TextareaInput,
   DatalistInput,
@@ -34,26 +33,15 @@ const formBuilder = (form, handleInputChange, handleInputBlur) => (
 const inputSelector = (field, handleInputChange, handleInputBlur, index) => {
   switch (field.type) {
     case "text":
+    case "email":
+    case "number":
       return (
         <TextInput
           key={field.name}
           label={field.label}
           name={field.name}
           value={field.value}
-          placeholder={field.placeholder}
-          handleInputChange={handleInputChange}
-          handleInputBlur={handleInputBlur}
-          formSectionIndex={index}
-          error={field.error}
-        />
-      );
-    case "email":
-      return (
-        <EmailInput
-          key={field.name}
-          label={field.label}
-          name={field.name}
-          value={field.value}
+          type={field.type}
           placeholder={field.placeholder}
           handleInputChange={handleInputChange}
           handleInputBlur={handleInputBlur}

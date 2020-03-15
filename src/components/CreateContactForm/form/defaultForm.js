@@ -41,7 +41,7 @@ const defaultForm = [
         error: null
       },
       {
-        type: "text",
+        type: "number",
         label: "Phone",
         name: "phone",
         value: "",
