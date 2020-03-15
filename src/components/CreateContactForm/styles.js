@@ -74,8 +74,8 @@ export const StyledSelect = styled.select`
   flex: 0 0 25%;
   background-color: ${({ theme }) => theme.color.white};
   align-self: stretch;
-  color: ${({ value, theme }) =>
-    value === "" ? theme.color.lightGrey2 : theme.color.black};
+  color: ${({ defaultValue, theme }) =>
+    defaultValue === "" ? theme.color.lightGrey2 : theme.color.black};
 
   &:focus + input {
     border-left: 1px solid transparent;
