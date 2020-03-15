@@ -74,7 +74,7 @@ class CreateContactForm extends Component {
 
   handleFormReset = () => {
     this.setState({
-      form: defaultForm,
+      form: [...defaultForm],
       modalOpen: false
     });
   };
