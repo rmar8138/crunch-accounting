@@ -14,7 +14,7 @@ import {
   StyledFormFields
 } from "./../styles";
 
-const formBuilder = (form, handleInputChange) => (
+const formBuilder = (form, handleInputChange, handleInputBlur) => (
   <StyledFormContainer>
     <StyledForm>
       {form.map((formSection, index) => (
@@ -22,7 +22,7 @@ const formBuilder = (form, handleInputChange) => (
           <h3>{formSection.heading}</h3>
           <StyledFormFields>
             {formSection.fields.map(field =>
-              inputSelector(field, handleInputChange, index)
+              inputSelector(field, handleInputChange, handleInputBlur, index)
             )}
           </StyledFormFields>
         </StyledFormSection>
@@ -31,7 +31,7 @@ const formBuilder = (form, handleInputChange) => (
   </StyledFormContainer>
 );
 
-const inputSelector = (field, handleInputChange, index) => {
+const inputSelector = (field, handleInputChange, handleInputBlur, index) => {
   switch (field.type) {
     case "text":
       return (
@@ -42,6 +42,7 @@ const inputSelector = (field, handleInputChange, index) => {
           value={field.value}
           placeholder={field.placeholder}
           handleInputChange={handleInputChange}
+          handleInputBlur={handleInputBlur}
           formSectionIndex={index}
           error={field.error}
         />
@@ -55,6 +56,7 @@ const inputSelector = (field, handleInputChange, index) => {
           value={field.value}
           placeholder={field.placeholder}
           handleInputChange={handleInputChange}
+          handleInputBlur={handleInputBlur}
           formSectionIndex={index}
           error={field.error}
         />

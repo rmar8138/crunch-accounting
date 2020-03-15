@@ -13,6 +13,7 @@ export const TextInput = ({
   value,
   placeholder,
   handleInputChange,
+  handleInputBlur,
   error,
   formSectionIndex
 }) => (
@@ -25,6 +26,7 @@ export const TextInput = ({
       placeholder={placeholder}
       type="text"
       onChange={event => handleInputChange(formSectionIndex, event)}
+      onBlur={event => handleInputBlur(formSectionIndex, event)}
     />
     {error && <span>{error}</span>}
   </StyledTextInput>
@@ -36,6 +38,7 @@ export const EmailInput = ({
   value,
   placeholder,
   handleInputChange,
+  handleInputBlur,
   error,
   formSectionIndex
 }) => (
@@ -48,6 +51,7 @@ export const EmailInput = ({
       placeholder={placeholder}
       type="email"
       onChange={event => handleInputChange(formSectionIndex, event)}
+      onBlur={event => handleInputBlur(formSectionIndex, event)}
     />
     {error && <span>{error}</span>}
   </StyledTextInput>

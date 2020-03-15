@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { isEmail, isPostalCode, isInt } from "validator";
 import Modal from "./../Modal";
 import StyledButton from "../Button";
 import { StyledFormHeader, StyledButtonContainer } from "./styles";
 import defaultForm from "./form/defaultForm";
 import formBuilder from "./form/formBuilder";
+import { anyLocale } from "./../../config/constants";
 
 class CreateContactForm extends Component {
   state = {
@@ -19,8 +21,8 @@ class CreateContactForm extends Component {
     const { name, value, checked } = event.target;
     this.setState(prevState => ({
       ...prevState, // return modal state
-      form: prevState.form.map((formSection, index) => {
-        if (index === formSectionIndex) {
+      form: prevState.form.map((formSection, prevFormSectionIndex) => {
+        if (prevFormSectionIndex === formSectionIndex) {
           return {
             ...formSection, // return heading
             fields: formSection.fields.map(field => {
@@ -76,6 +78,55 @@ class CreateContactForm extends Component {
     });
   };
 
+  handleInputBlur = (formSectionIndex, event) => {
+    // onblur, check if phone/email/postcode input
+    let error = "";
+    const { name, value } = event.target;
+
+    // if value, run through validator
+    if (value) {
+      switch (name) {
+        case "phone":
+          if (!isInt(value)) error = "Must be a valid phone number";
+          break;
+        case "email":
+          if (!isEmail(value)) error = "Must be a valid email address";
+          break;
+        case "postcode":
+          if (!isPostalCode(value, anyLocale))
+            error = "Must be a valid postcode";
+          break;
+        default:
+          break;
+      }
+    }
+    // if not valid, set error message
+    if (error) {
+      this.setState(prevState => ({
+        ...prevState,
+        form: prevState.form.map((formSection, prevFormSectionIndex) => {
+          if (prevFormSectionIndex === formSectionIndex) {
+            return {
+              ...formSection,
+              fields: formSection.fields.map(field => {
+                if (field.name === name) {
+                  return {
+                    ...field,
+                    error
+                  };
+                }
+
+                return field;
+              })
+            };
+          }
+
+          return formSection;
+        })
+      }));
+    }
+  };
+
   validateForm = () => {
     let isValidForm = true;
     const { form } = this.state;
@@ -91,7 +142,7 @@ class CreateContactForm extends Component {
                 return {
                   ...formSection,
                   fields: formSection.fields.map((field, prevFieldIndex) => {
-                    if (prevFieldIndex === currentFieldIndex) {
+                    if (prevFieldIndex === currentFieldIndex && !field.error) {
                       return {
                         ...field,
                         error: "Required field"
@@ -132,7 +183,7 @@ class CreateContactForm extends Component {
             </StyledButton>
           </StyledButtonContainer>
         </StyledFormHeader>
-        {formBuilder(form, this.handleInputChange)}
+        {formBuilder(form, this.handleInputChange, this.handleInputBlur)}
       </>
     );
   }
