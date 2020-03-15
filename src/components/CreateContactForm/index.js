@@ -124,10 +124,7 @@ class CreateContactForm extends Component {
     return (
       <>
         {modalOpen && (
-          <Modal
-            data={this.state.form}
-            handleCloseModal={this.handleCloseModal}
-          />
+          <Modal formData={form} handleCloseModal={this.handleCloseModal} />
         )}
         <StyledFormHeader>
           <h2>Create Contact</h2>
