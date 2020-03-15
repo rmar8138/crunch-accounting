@@ -43,6 +43,10 @@ button {
   border: none;
   border-radius: 1px;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 li {
@@ -79,6 +83,7 @@ input {
 select {
   appearance: none;
   padding: ${({ theme }) => theme.spacing.xs};
+  cursor: pointer;
 }
 
 textarea {

@@ -25,10 +25,6 @@ export const StyledModal = styled.div`
     justify-content: center;
     align-items: center;
 
-    &:focus {
-      outline: none;
-    }
-
     img {
       height: 15px;
       width: 15px;
@@ -79,6 +75,12 @@ export const StyledModal = styled.div`
     h2 {
       color: ${({ theme }) => theme.color.black};
       margin-bottom: ${({ theme }) => theme.spacing.md};
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-left: ${({ theme }) => theme.spacing.sm};
+      }
     }
 
     p {

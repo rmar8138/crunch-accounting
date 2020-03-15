@@ -103,7 +103,7 @@ class CreateContactForm extends Component {
     this.setState({ modalOpen: false });
   };
 
-  handleInputChange = event => {
+  _handleInputChange = event => {
     const { name, value, checked } = event.target;
     this.setState(prevState => ({
       ...prevState,
@@ -115,6 +115,32 @@ class CreateContactForm extends Component {
           error: null
         }
       }
+    }));
+  };
+
+  handleInputChange = (formSectionIndex, event) => {
+    const { name, value } = event.target;
+    this.setState(prevState => ({
+      ...prevState, // return modal state
+      form: prevState.form.map((formSection, index) => {
+        if (index === formSectionIndex) {
+          return {
+            ...formSection, // return heading
+            fields: formSection.fields.map(field => {
+              if (field.name === name) {
+                return {
+                  ...field, // return other fields
+                  value
+                };
+              }
+
+              return field;
+            })
+          };
+        }
+
+        return formSection;
+      })
     }));
   };
 
@@ -183,10 +209,12 @@ class CreateContactForm extends Component {
 
     return (
       <>
-        <Modal
-          data={this.state.form}
-          handleCloseModal={this.handleCloseModal}
-        />
+        {modalOpen && (
+          <Modal
+            data={this.state.form}
+            handleCloseModal={this.handleCloseModal}
+          />
+        )}
         <StyledFormHeader>
           <h2>Create Contact</h2>
           <StyledButtonContainer>

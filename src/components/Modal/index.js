@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { StyledModal } from "./styles";
+import closeIcon from "./../../assets/images/close.svg";
+import successIcon from "./../../assets/images/success.svg";
 
 class Modal extends Component {
   render() {
     return (
       <StyledModal>
         <button onClick={() => this.props.handleCloseModal()}>
-          <img src="https://icomoon.io/icons5d33221/5/84.svg" alt="Close" />
+          <img src={closeIcon} alt="Close Button" />
         </button>
         <div className="modalHeader">
-          <h2>Saved</h2>
+          <h2>
+            Saved
+            <img src={successIcon} alt="Save successful" />
+          </h2>
           <p>The contact details have been saved</p>
         </div>
         <div>
