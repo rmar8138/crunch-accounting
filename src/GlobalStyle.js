@@ -69,13 +69,11 @@ textarea {
   font-size: ${({ theme }) => theme.fontSize.sm};
   border: 1px solid transparent;
   border-radius: 1px;
-  transition: all 0.2s ease-out;
 
   &:focus,
   &:-webkit-autofill:focus {
     outline: none;
-    /* border: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`}; */
-    border: ${({ theme }) => `1px solid ${theme.color.black}`};
+    border: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
   }
 
   &::placeholder {
