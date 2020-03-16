@@ -21,3 +21,13 @@ export const selectErrorMessage = (name, value) => {
     }
   }
 };
+
+export const selectInputBorder = ({ error, value, theme }) => {
+  if (error) {
+    return `1px solid ${theme.color.red}`;
+  } else if (value) {
+    return `1px solid ${theme.color.darkGrey2}`;
+  } else {
+    return "1px solid transparent";
+  }
+};

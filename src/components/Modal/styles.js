@@ -9,7 +9,7 @@ export const StyledModal = styled.div`
   min-width: 60rem;
   padding: ${({ theme }) => theme.spacing.xl};
   background-color: ${({ theme }) => theme.color.white};
-  border-radius: 1px;
+  border-radius: 2px;
   z-index: 1;
   overflow: scroll;
 

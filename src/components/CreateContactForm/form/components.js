@@ -18,7 +18,7 @@ export const TextInput = ({
   error,
   formSectionIndex
 }) => (
-  <StyledTextInput error={error}>
+  <StyledTextInput value={value} error={error}>
     <label htmlFor={name}>{label}</label>
     <input
       id={name}
@@ -118,12 +118,13 @@ export const SelectTextInput = ({
 }) => (
   <StyledTextInput>
     <label htmlFor={textName}>{textLabel}</label>
-    <StyledTextDropdownInput error={error}>
+    <StyledTextDropdownInput value={textValue} error={error}>
       <StyledSelect
         name={selectName}
         id={selectName}
         defaultValue={selectValue}
         onChange={event => handleInputChange(formSectionIndex, event)}
+        value={selectValue}
         error={error}
       >
         {options.map((option, index) => {

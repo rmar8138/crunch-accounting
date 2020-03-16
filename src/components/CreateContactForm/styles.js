@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { selectInputBorder } from "./helpers";
 
 export const StyledInputContainer = styled.div`
   width: 50rem;
@@ -64,21 +65,22 @@ export const StyledTextDropdownInput = styled.div`
 
   input#firstName {
     flex: 1;
-    border-top: ${({ error, theme }) =>
-      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
-    border-right: ${({ error, theme }) =>
-      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
-    border-bottom: ${({ error, theme }) =>
-      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+    border-top: ${({ error, value, theme }) =>
+      selectInputBorder({ error, value, theme })};
+    border-right: ${({ error, value, theme }) =>
+      selectInputBorder({ error, value, theme })};
+    border-bottom: ${({ error, value, theme }) =>
+      selectInputBorder({ error, value, theme })};
     border-left: ${({ error, theme }) =>
       error
         ? `1px solid ${theme.color.red}`
         : `1px solid ${theme.color.lightGrey2}`};
+    border-radius: 0 2px 2px 0;
 
     &:focus,
     &:-webkit-autofill:focus {
       outline: none;
-      border: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+      border: ${({ theme }) => `1px solid ${theme.color.black}`};
       /* border-top: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
       border-bottom: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`}; */
     }
@@ -91,8 +93,13 @@ export const StyledSelect = styled.select`
   align-self: stretch;
   color: ${({ defaultValue, theme }) =>
     defaultValue === "" ? theme.color.lightGrey2 : theme.color.black};
-  border: ${({ error, theme }) =>
-    error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+  border-top: ${({ error, value, theme }) =>
+    selectInputBorder({ error, value, theme })};
+  border-left: ${({ error, value, theme }) =>
+    selectInputBorder({ error, value, theme })};
+  border-bottom: ${({ error, value, theme }) =>
+    selectInputBorder({ error, value, theme })};
+  border-radius: 2px 0 0 2px;
 
   &:focus + input {
     border-left: 1px solid transparent !important;
@@ -101,9 +108,9 @@ export const StyledSelect = styled.select`
   &:focus,
   &:-webkit-autofill:focus {
     outline: none;
-    border-left: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
-    border-top: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
-    border-bottom: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+    border-left: ${({ theme }) => `1px solid ${theme.color.black}`};
+    border-top: ${({ theme }) => `1px solid ${theme.color.black}`};
+    border-bottom: ${({ theme }) => `1px solid ${theme.color.black}`};
   }
 `;
 
@@ -118,8 +125,8 @@ export const StyledTextInput = styled.div`
   }
 
   input {
-    border: ${({ error, theme }) =>
-      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+    border: ${({ error, value, theme }) =>
+      selectInputBorder({ error, theme, value })};
   }
 
   span {

@@ -42,7 +42,7 @@ button {
   font-size: ${({ theme }) => theme.fontSize.md};
   padding: ${({ theme }) => `${theme.spacing.xxs} ${theme.spacing.md}`};
   border: none;
-  border-radius: 1px;
+  border-radius: 2px;
   cursor: pointer;
 
   &:focus {
@@ -68,12 +68,13 @@ select,
 textarea {
   font-size: ${({ theme }) => theme.fontSize.sm};
   border: 1px solid transparent;
-  border-radius: 1px;
+  border-radius: 2px;
 
   &:focus,
   &:-webkit-autofill:focus {
     outline: none;
-    border: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+    border: ${({ theme }) => `1px solid ${theme.color.black}`};
+    box-shadow: ${({ theme }) => `0px 2px 2px 0px ${theme.color.lightGrey2}`};
   }
 
   &::placeholder {
