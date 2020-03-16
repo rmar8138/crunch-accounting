@@ -62,22 +62,25 @@ export const StyledTextDropdownInput = styled.div`
   display: flex;
   align-items: center;
 
-  input {
+  input#firstName {
     flex: 1;
-    border-left: ${({ theme }) => `1px solid ${theme.color.lightGrey2}`};
+    border-top: ${({ error, theme }) =>
+      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+    border-right: ${({ error, theme }) =>
+      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+    border-bottom: ${({ error, theme }) =>
+      error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
+    border-left: ${({ error, theme }) =>
+      error
+        ? `1px solid ${theme.color.red}`
+        : `1px solid ${theme.color.lightGrey2}`};
 
-    &:focus,
-    &:-webkit-autofill:focus {
-      border-right: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
-    }
-  }
-
-  input {
     &:focus,
     &:-webkit-autofill:focus {
       outline: none;
-      border-top: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
-      border-bottom: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+      border: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+      /* border-top: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`};
+      border-bottom: ${({ theme }) => `1px solid ${theme.color.darkGrey2}`}; */
     }
   }
 `;
@@ -88,9 +91,11 @@ export const StyledSelect = styled.select`
   align-self: stretch;
   color: ${({ defaultValue, theme }) =>
     defaultValue === "" ? theme.color.lightGrey2 : theme.color.black};
+  border: ${({ error, theme }) =>
+    error ? `1px solid ${theme.color.red}` : "1px solid transparent"};
 
   &:focus + input {
-    border-left: 1px solid transparent;
+    border-left: 1px solid transparent !important;
   }
 
   &:focus,
